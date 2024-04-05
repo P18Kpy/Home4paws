@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+    <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #333;">
+        <li style="float: left;"><a href="{{ url_for('hello') }}" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Home</a></li>
+        <li style="float: left;"><a href="{{ url_for('about') }}" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">About</a></li>
+        {% if 'user' in session %}
+            <li style="float: right;"><a href="{{ url_for('logout') }}" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Log Out</a></li>
+        {% else %}
+            <li style="float: right;"><a href="{{ url_for('signup') }}" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Sign Up</a></li>
+            <li style="float: right;"><a href="{{ url_for('login') }}" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<h1>Welcome to Our Site</h1>
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
